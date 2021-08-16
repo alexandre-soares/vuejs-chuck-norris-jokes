@@ -15,7 +15,7 @@ export default {
   components: {
     Jokes,
     Modal,
-    Counter
+    Counter,
   },
 };
 </script>
