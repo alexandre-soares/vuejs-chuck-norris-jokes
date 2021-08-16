@@ -2,6 +2,7 @@
   <Loading v-if="isLoading" />
   <div class="jokes">
     <h2>{{ this.joke.text }}</h2>
+    <p>Rate this joke</p>
     <div class="buttons">
       <button @click="rateJoke('bad')">😩</button>
       <button @click="rateJoke('medium')">🤨</button>
@@ -13,6 +14,7 @@
         v-for="(notification, index) in notifications"
         :key="index"
         :class="notification.rating"
+        @click="removeNotification(index)"
       >
         {{ notification.text }}
       </p>
@@ -103,6 +105,9 @@ export default {
         this.notifications.shift();
       }
     },
+    removeNotification(index) {
+      this.notifications.splice(index, 1);
+    },
   },
 };
 </script>
@@ -132,21 +137,17 @@ export default {
   justify-content: space-between;
 
   & button {
-    padding: 3rem;
-
-    &:nth-child(2) {
-      margin-top: 5rem;
-    }
-  }
-
-  & button {
     font-size: 6rem;
-    padding: 3rem;
+    padding: 1.5rem;
     background-color: transparent;
     border: none;
     cursor: pointer;
     transition: all 0.5s ease-in-out;
-    margin: 2rem;
+    margin: 0.5rem;
+
+    &:nth-child(2) {
+      margin-top: 5rem;
+    }
 
     @media only screen and (max-width: $bp-medium) {
       font-size: 4rem;
@@ -169,6 +170,7 @@ export default {
     margin: 2rem;
     border-radius: 1.5rem;
     font-size: 1.4rem;
+    cursor: pointer;
   }
 
   & .bad {

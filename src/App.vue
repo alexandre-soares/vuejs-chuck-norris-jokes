@@ -69,7 +69,7 @@ body {
 
 p {
   font-size: 1.6rem;
-  margin: 2rem;
+  margin: 1rem;
   line-height: 1.6;
 }
 </style>
