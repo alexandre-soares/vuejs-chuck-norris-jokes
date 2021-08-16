@@ -39,10 +39,10 @@ export default {
     };
   },
   mounted() {
-    // Load the component with a joke
+    // Load the component with a joke when the page appears
     this.getRandomJoke();
 
-    // Remove the first notification of the array (the oldest one) every 5 seconds
+    // Remove the first notification of the array (the oldest one) every 10 seconds
     setInterval(() => {
       this.autoRemoveNotification();
     }, 10000);
@@ -52,6 +52,7 @@ export default {
       // Start the loading screen
       this.isLoading = true;
 
+      // Api Call
       try {
         const response = await axios.get(
           "https://api.chucknorris.io/jokes/random"
@@ -68,6 +69,7 @@ export default {
       }
     },
     rateJoke(value) {
+      // Push the notification object on the notifications array
       if (value === "bad") {
         this.notifications.push({
           id: this.joke.id,
@@ -92,9 +94,11 @@ export default {
         });
       }
 
+      // Api Call for another joke
       this.getRandomJoke();
     },
     autoRemoveNotification() {
+      // Remove the oldest notification only if there is at least one
       if (this.notifications.length > 0) {
         this.notifications.shift();
       }
@@ -136,6 +140,7 @@ export default {
   }
 
   & button {
+    font-size: 6rem;
     padding: 3rem;
     background-color: transparent;
     border: none;
@@ -180,5 +185,9 @@ export default {
     color: #0f5132;
     background-color: #d1e7dd;
   }
+}
+
+.btn {
+  height: 5rem;
 }
 </style>

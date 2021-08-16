@@ -54,11 +54,16 @@ body {
   border-radius: 0.5rem;
   border: none;
   cursor: pointer;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
   margin: 2rem;
 
   &:hover {
+    color: white;
     background-color: darkgray;
+  }
+
+  &:active {
+    transform: translateY(.5rem);
   }
 }
 
