@@ -2,7 +2,23 @@
   <div class="modal" v-if="modalOpen">
     <div class="modal__box">
       <h1>Hope you like it!</h1>
-      <p>Don't hesitate to send me an email at <br> alexandre.desousasoares@gmail.com</p>
+      <p>
+        Don't hesitate to send me an email at <br />
+        alexandre.desousasoares@gmail.com
+      </p>
+      <iframe
+        src="https://giphy.com/embed/BIuuwHRNKs15C"
+        width="480"
+        height="359"
+        frameBorder="0"
+        class="giphy-embed"
+        allowFullScreen
+      ></iframe>
+      <p>
+        <a href="https://giphy.com/gifs/chuck-norris-thumbs-up-BIuuwHRNKs15C"
+          >via GIPHY</a
+        >
+      </p>
       <span class="modal__close" @click="closeModal">
         <img :src="require(`@/assets/close.svg`)" alt="close" />
       </span>

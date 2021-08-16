@@ -10,14 +10,16 @@
     </div>
     <button class="btn" @click="getRandomJoke">Get Another Joke</button>
     <div class="notifications">
-      <p
-        v-for="(notification, index) in notifications"
-        :key="index"
-        :class="notification.rating"
-        @click="removeNotification(index)"
-      >
-        {{ notification.text }}
-      </p>
+      <transition-group name="slide-fade" mode="out-in">
+        <p
+          v-for="(notification, index) in notifications"
+          :key="index"
+          :class="notification.rating"
+          @click="removeNotification(index)"
+        >
+          {{ notification.text }}
+        </p>
+      </transition-group>
     </div>
   </div>
 </template>
@@ -128,6 +130,7 @@ export default {
     font-size: 2rem;
     line-height: 1.6;
     text-align: center;
+    text-transform: capitalize;
   }
 }
 
@@ -163,6 +166,7 @@ export default {
   position: absolute;
   bottom: 1rem;
   right: 1rem;
+  width: 50%;
 
   p {
     padding: 2rem 3rem;
@@ -191,5 +195,21 @@ export default {
 
 .btn {
   height: 5rem;
+}
+
+// ANIMATIONS
+
+/* Enter and leave animations can use different */
+/* durations and timing functions.              */
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(4rem);
+  opacity: 0;
 }
 </style>
