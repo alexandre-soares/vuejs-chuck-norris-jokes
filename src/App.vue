@@ -1,14 +1,14 @@
 <template>
-  <Navigation />
   <router-view />
+  <Counter />
 </template>
 
 <script>
-import Navigation from "@/components/Navigation.vue";
+import Counter from "./components/Counter.vue";
 export default {
   name: "App",
   components: {
-    Navigation,
+    Counter,
   },
 };
 </script>
@@ -26,6 +26,7 @@ $bp-smallest: 31.25em; // 500px
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Poppins", sans-serif;
 }
 
 html {
@@ -38,6 +39,8 @@ html {
 }
 
 body {
+  background-color: #fbab7e;
+  background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -57,5 +60,11 @@ body {
   &:hover {
     background-color: darkgray;
   }
+}
+
+p {
+  font-size: 1.6rem;
+  margin: 2rem;
+  line-height: 1.6;
 }
 </style>

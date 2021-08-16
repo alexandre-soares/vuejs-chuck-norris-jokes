@@ -1,9 +1,22 @@
 <template>
   <Loading v-if="isLoading" />
   <div class="jokes">
-    <h1>Chuck Norris Jokes App</h1>
-    <h2>{{ this.joke }}</h2>
-    <button class="btn" @click="getRandomJoke">Get Random Joke</button>
+    <h2>{{ this.joke.text }}</h2>
+    <div class="buttons">
+      <button @click="rateJoke('bad')">😩</button>
+      <button @click="rateJoke('medium')">🤨</button>
+      <button @click="rateJoke('good')">😂</button>
+    </div>
+    <button class="btn" @click="getRandomJoke">Get Another Joke</button>
+    <div class="notifications">
+      <p
+        v-for="(notification, index) in notifications"
+        :key="index"
+        :class="notification.rating"
+      >
+        {{ notification.text }}
+      </p>
+    </div>
   </div>
 </template>
 
@@ -17,24 +30,73 @@ export default {
   },
   data() {
     return {
-      joke: "",
+      joke: {
+        id: null,
+        text: null,
+      },
       isLoading: false,
+      notifications: [],
     };
   },
   mounted() {
+    // Load the component with a joke
     this.getRandomJoke();
+
+    // Remove the first notification of the array (the oldest one) every 5 seconds
+    setInterval(() => {
+      this.autoRemoveNotification();
+    }, 10000);
   },
   methods: {
     async getRandomJoke() {
+      // Start the loading screen
       this.isLoading = true;
+
       try {
         const response = await axios.get(
           "https://api.chucknorris.io/jokes/random"
         );
-        this.joke = response.data.value;
+
+        // Show the joke
+        this.joke.id = response.data.id;
+        this.joke.text = response.data.value;
+
+        // Stop the loading screen
         this.isLoading = false;
       } catch (error) {
         console.error(error);
+      }
+    },
+    rateJoke(value) {
+      if (value === "bad") {
+        this.notifications.push({
+          id: this.joke.id,
+          text: `You didn't like the joke: ${this.joke.text}!`,
+          rating: "bad",
+        });
+      }
+
+      if (value === "medium") {
+        this.notifications.push({
+          id: this.joke.id,
+          text: `The joke "${this.joke.text}" didn't impress you!`,
+          rating: "medium",
+        });
+      }
+
+      if (value === "good") {
+        this.notifications.push({
+          id: this.joke.id,
+          text: `You liked the joke: ${this.joke.text}`,
+          rating: "good",
+        });
+      }
+
+      this.getRandomJoke();
+    },
+    autoRemoveNotification() {
+      if (this.notifications.length > 0) {
+        this.notifications.shift();
       }
     },
   },
@@ -46,17 +108,77 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
   width: 80%;
-  height: 60vh;
-  margin: 0 auto;
-
-  & h1 {
-    text-align: center;
-  }
+  margin: 0 auto 4rem;
+  background-color: white;
+  padding: 3rem 4rem;
+  margin-top: 5rem;
+  border-radius: 1.5rem;
 
   & h2 {
+    font-size: 2rem;
+    line-height: 1.6;
     text-align: center;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & button {
+    padding: 3rem;
+
+    &:nth-child(2) {
+      margin-top: 5rem;
+    }
+  }
+
+  & button {
+    padding: 3rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+    margin: 2rem;
+
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 4rem;
+    }
+
+    &:hover {
+      background-color: rgba(141, 141, 141, 0.493);
+    }
+  }
+}
+
+.notifications {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+
+  p {
+    padding: 2rem 3rem;
+    text-align: right;
+    margin: 2rem;
+    border-radius: 1.5rem;
+    font-size: 1.4rem;
+  }
+
+  & .bad {
+    background-color: #f8d7da;
+    color: #842029;
+  }
+
+  & .medium {
+    background-color: #fff3cd;
+    color: #735b14;
+  }
+
+  & .good {
+    color: #0f5132;
+    background-color: #d1e7dd;
   }
 }
 </style>

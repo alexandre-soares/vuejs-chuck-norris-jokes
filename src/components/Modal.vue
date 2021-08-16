@@ -1,8 +1,11 @@
 <template>
   <div class="modal" v-if="modalOpen">
     <div class="modal__box">
-      <h1>Did you like it?</h1>
-      <span class="modal__close" @click="closeModal">x</span>
+      <h1>Hope you like it!</h1>
+      <p>Don't hesitate to send me an email at <br> alexandre.desousasoares@gmail.com</p>
+      <span class="modal__close" @click="closeModal">
+        <img :src="require(`@/assets/close.svg`)" alt="close" />
+      </span>
     </div>
   </div>
 </template>
@@ -42,12 +45,13 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 
   &__box {
     position: relative;
     background-color: white;
-    height: 40%;
-    width: 70%;
+    height: 50%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -60,6 +64,10 @@ export default {
     top: 1rem;
     right: 2rem;
     cursor: pointer;
+
+    & img {
+      height: 3rem;
+    }
   }
 }
 </style>

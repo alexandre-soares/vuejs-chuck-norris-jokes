@@ -1,5 +1,7 @@
 <template>
-  <div v-if="counter > 0" class="counter">{{ this.counter }}</div>
+  <div v-if="counter > 0" class="counter">
+    <p>A modal box is going to appear in {{ this.counter }} seconds</p>
+  </div>
 </template>
 
 <script>
@@ -15,6 +17,7 @@ export default {
   },
   methods: {
     counterFrom25To0() {
+      // Decrease counter by 1 every second
       setInterval(() => {
         this.counter--;
       }, 1000);
