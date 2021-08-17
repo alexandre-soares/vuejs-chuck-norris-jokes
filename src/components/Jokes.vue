@@ -24,7 +24,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Loading from "../components/Loading.vue";
 import axios from "axios";
 export default {
@@ -52,7 +52,7 @@ export default {
     }, 10000);
   },
   methods: {
-    async getRandomJoke() {
+    async getRandomJoke(): Promise<void> {
       // Start the loading screen
       this.isLoading = true;
 
@@ -72,7 +72,7 @@ export default {
         console.error(error);
       }
     },
-    rateJoke(value) {
+    rateJoke(value: String) {
       // Push the notification object on the notifications array
       if (value === "bad") {
         this.notifications.push({
@@ -107,7 +107,7 @@ export default {
         this.notifications.shift();
       }
     },
-    removeNotification(index) {
+    removeNotification(index: Number) {
       this.notifications.splice(index, 1);
     },
   },
@@ -202,10 +202,10 @@ export default {
 /* Enter and leave animations can use different */
 /* durations and timing functions.              */
 .slide-fade-enter-active {
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 .slide-fade-leave-active {
-  transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ {
