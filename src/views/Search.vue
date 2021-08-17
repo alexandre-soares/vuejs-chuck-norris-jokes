@@ -1,12 +1,12 @@
 <template>
   <div class="search">
-    <p>Search must be between 3 and 120 charactes</p>
     <input
       type="text"
       @keyup.enter="searchJoke"
       v-model="input"
       placeholder="Search for a joke..."
     />
+    <p class="info-message" >Search must be between 3 and 120 characters</p>
 
     <div class="info" v-if="errors">
       Sorry but there are no jokes matching with your search!
@@ -73,7 +73,7 @@ export default {
   width: auto;
   & input {
     display: block;
-    margin: 4rem auto;
+    margin: 4rem auto 1rem;
     font-size: 1.4rem;
     padding: 2rem 4rem;
     border-radius: 1.5rem;
@@ -81,13 +81,23 @@ export default {
     width: 50%;
 
     &:focus {
-      outline: 1px solid orange;
+      outline: 3px solid orange;
       border-radius: 1.5rem;
       color: black;
     }
   }
 
-  & .info {
+  & .info-message {
+    text-align: center;
+    margin: 0 auto 2rem;
+    width: 40%;
+    border-radius: 1rem;
+    display: block;
+    font-size: 1.6rem;
+    padding: 1rem 2rem;
+  }
+
+   & .info {
     text-align: center;
     background-color: #fff3cd;
     color: #735b14;
