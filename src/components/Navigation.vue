@@ -38,14 +38,19 @@
   display: flex;
 
   & a {
-      margin: 0 3rem;
-      font-size: 1.4rem;
-      text-decoration: none;
-      color: black;
+    margin: 0 3rem;
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: black;
+    transition: all 0.3s ease-in-out;
 
-      &:last-child{
-          margin-right: 0;
-      }
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover {
+      color: rgb(197, 129, 2);
+    }
   }
 }
 </style>
