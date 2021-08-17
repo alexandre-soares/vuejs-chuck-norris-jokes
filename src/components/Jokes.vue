@@ -73,30 +73,27 @@ export default {
       }
     },
     rateJoke(value) {
-      // Push the notification object on the notifications array
+      // Create a new notification object
+
+      const newNotification = {
+        id: this.joke.id,
+        rating: value,
+      };
+
       if (value === "bad") {
-        this.notifications.push({
-          id: this.joke.id,
-          text: `You didn't like the joke: ${this.joke.text}!`,
-          rating: "bad",
-        });
+        newNotification.text = `You didn't like the joke: ${this.joke.text}!`;
       }
 
       if (value === "medium") {
-        this.notifications.push({
-          id: this.joke.id,
-          text: `The joke "${this.joke.text}" didn't impress you!`,
-          rating: "medium",
-        });
+        newNotification.text = `The joke "${this.joke.text}" didn't impress you!`;
       }
 
       if (value === "good") {
-        this.notifications.push({
-          id: this.joke.id,
-          text: `You liked the joke: ${this.joke.text}`,
-          rating: "good",
-        });
+        newNotification.text = `You liked the joke: ${this.joke.text}`;
       }
+
+      // Pushing new notification on the notifications array
+      this.notifications.push(newNotification);
 
       // Api Call for another joke
       this.getRandomJoke();
@@ -202,10 +199,10 @@ export default {
 /* Enter and leave animations can use different */
 /* durations and timing functions.              */
 .slide-fade-enter-active {
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 .slide-fade-leave-active {
-  transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ {
