@@ -63,7 +63,7 @@ body {
   }
 
   &:active {
-    transform: translateY(0.5rem);
+    transform: translateY(.5rem);
   }
 }
 
