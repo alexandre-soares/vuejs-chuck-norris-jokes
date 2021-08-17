@@ -17,6 +17,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.home {
+  width: 100vw;
+  height: 100vh;
+}
+
 h1 {
   text-align: center;
   font-size: 4.8rem;
