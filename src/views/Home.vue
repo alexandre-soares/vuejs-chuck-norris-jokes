@@ -1,14 +1,5 @@
 <template>
   <div class="home">
-    <h1>
-      Chuck Norris Jokes App
-      <img
-        src="https://assets.chucknorris.host/img/avatar/chuck-norris.png"
-        alt="logo"
-      />
-    </h1>
-
-    <Modal />
     <Jokes />
   </div>
 </template>
@@ -16,13 +7,11 @@
 <script>
 // @ is an alias to /src
 import Jokes from "@/components/Jokes.vue";
-import Modal from "@/components/Modal.vue";
 
 export default {
   name: "Home",
   components: {
     Jokes,
-    Modal,
   },
 };
 </script>

@@ -1,14 +1,20 @@
 <template>
+  <Navigation />
   <router-view />
   <Counter />
+  <Modal />
 </template>
 
 <script>
 import Counter from "./components/Counter.vue";
+import Navigation from "./components/Navigation.vue";
+import Modal from "./components/Modal.vue";
 export default {
   name: "App",
   components: {
     Counter,
+    Navigation,
+    Modal,
   },
 };
 </script>
@@ -43,10 +49,6 @@ body {
   background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
   width: 100vw;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
 }
 
 .btn {
@@ -63,7 +65,7 @@ body {
   }
 
   &:active {
-    transform: translateY(.5rem);
+    transform: translateY(0.5rem);
   }
 }
 
