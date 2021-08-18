@@ -69,4 +69,8 @@ p {
   margin: 1rem;
   line-height: 1.6;
 }
+
+.router-link-active, .router-exact-link-active {
+  color: rgb(165, 107, 0) !important;
+}
 </style>

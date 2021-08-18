@@ -6,7 +6,7 @@
       v-model="input"
       placeholder="Search for a joke..."
     />
-    <p class="info-message" >Search must be between 3 and 120 characters</p>
+    <p class="info-message" >Search must be between 3 and 120 characters (also press enter button to start the search)</p>
 
     <div class="info" v-if="errors">
       Sorry but there are no jokes matching with your search!

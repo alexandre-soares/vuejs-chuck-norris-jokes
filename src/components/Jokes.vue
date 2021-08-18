@@ -105,6 +105,7 @@ export default {
       }
     },
     removeNotification(index) {
+      // Remove the clicked notification 
       this.notifications.splice(index, 1);
     },
   },
